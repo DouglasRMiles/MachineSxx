@@ -1,0 +1,24 @@
+child(X) :- boy(X).
+child(X) :- girl(X).
+girl(alice).
+boy(alex).
+trace on
+child(Q)?
+
+boy(bill)
+mother(alice,bill)
+child(X,Y) :- mother(Y,X)
+child(X,Y) :- father(Y,X)
+son(X,Y) :- child(X,Y),boy(X)
+
+son(X,alice)?
+
+# These will cause infinite loops.
+# According to Davis [2] it is to be expected 
+# and you're supposed to work around it.
+edge(a,b).
+edge(b,c).
+edge(a,d).
+path(X, Y) :- edge(X, Y).
+path(X, Y) :- path(X, Z), edge(Z, Y).
+path(a,d)?
