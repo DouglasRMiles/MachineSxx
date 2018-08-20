@@ -126,7 +126,7 @@ nonvar proc_sub(const nonvars & c)
     long n(atol(c[0].val.c_str()));
     for (nonvarit i = c.begin()+1; i != c.end(); ++i) n -= atol(i->val.c_str());
     return nonvar(Number, str(n));
-}
+}                                                                                 
 
 nonvar proc_mul(const nonvars & c)
 {
@@ -373,7 +373,11 @@ void repl(const std::string & prompt, environment * env)
 }
 
 int main_test ();
-int main90(int argc, char* argv[])
+#ifndef NO_LISP90_MAIN
+int main(int argc, char* argv[])
+#else
+int main_lisp90(int argc, char* argv[])
+#endif
 {
   //if(argc==0) 
   main_test();
